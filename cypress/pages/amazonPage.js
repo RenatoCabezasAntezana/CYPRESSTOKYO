@@ -1,38 +1,37 @@
-import { copyFileSync } from "fs";
+class AmazonPage {
+  elements = {
+    logoAmazon: () => cy.get("#nav-logo-sprites"),
+    searchAmazon: () => cy.get("#twotabsearchtextbox"),
+    buttonSearch: () => cy.get("#nav-search-submit-button"),
+    chooseProduct: () => cy.get("#nav-flyout-searchAjax"),
+    numberPage: () => cy.get(".s-pagination-strip"),
+    item: () => cy.get(".s-card-container > .a-section > .sg-row > .s-list-col-left"),
+    message: () => cy.get("#availability > span"),
+  };
 
-class AmazonPage{
-    elements = {
-        logoAmazon: () =>  cy.get('#nav-logo-sprites'),
-        searchAmazon: () => cy.get('#twotabsearchtextbox'),
-        buttonSearch: () => cy.get('#nav-search-submit-button'),
-        selectProduct: () => cy.get('#nav-flyout-searchAjax'),
-        numberPage: () => cy.get('.s-pagination-strip'),
-        item: () => cy.get('[data-asin="B085K45C3S"] > :nth-child(1)')
-    }
-    //[data-index="28"] > .s-widget-container > .a-section
-    validarPagina(){
-        this.elements.logoAmazon().should('be.visible');
-    }
-    searchProduct(products){
-        this.elements.searchAmazon().click();
-        this.elements.searchAmazon().type(products)
-    }
+  validatePage() {
+    this.elements.logoAmazon().should("be.visible");
+  }
+  searchProduct(products) {
+    this.elements.searchAmazon().click().type(products);
+  }
 
-    selectProduct(product){
-        this.elements.selectProduct().should('contain', product)
-        //this.elements.selectProduct().contains(product).click().end()
-    }
-    browserPage(number){
-     /*   this.elements.numberPage().click();
-        this.elements.numberPage().intercept();
-        this.elements.logoAmazon().should('be.visible')
-    */  this.elements.numberPage().should('contain',number)
-        this.elements.numberPage().contains(number).click().scrollIntoView().should('be.visible')   
-    }
-
-    selectThirdItem(){
-        this.elements.item().click();
-    }
+  selectProduct(product) {
+    this.elements.chooseProduct().should("contain", product).contains(product).click();
+  }
+  browserPage(number) {
+    this.elements.numberPage().should("contain", number).contains(number).click();
+  }
+  selectThirdItem() {
+    this.elements.item().each(($li, index) => {
+      if (index === 2) {
+        cy.wrap($li).click();
+      }
+    });
+  }
+  confirmMessage(message) {
+    this.elements.message().should("contain", message);
+  }
 }
 
-export default new AmazonPage()
+export default new AmazonPage();

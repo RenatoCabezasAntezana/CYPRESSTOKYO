@@ -4,23 +4,33 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cypress open"
-    
+    "test": "cypress open",
+    "cypress:cloud" : "cypress run --record --key 21dedcb2-1c49-4656-8bbf-584328a79403",
+    "cypress:execution":"cypress run"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
     "cypress": "^12.6.0",
-    "esbuild": "^0.17.10"
+    "esbuild": "^0.17.10",
+    "multiple-cucumber-html-reporter": "^3.2.0"
   },
   "dependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^15.1.4"
   },
   "cypress-cucumber-preprocessor": {
+    "json": {
+      "enabled": true,
+      "output": "jsonlogs/log.json",
+      "formater": "cucumber-json-formatter.exe"
+    },
+    "messages": {
+      "enabled": true,
+      "output": "jsonlogs/messages.ndjson"
+    },
     "stepDefinitions": [
       "cypress/e2e/step-definitions/*.{js, ts}"
     ]
   }
-
 }

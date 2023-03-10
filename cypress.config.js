@@ -6,6 +6,7 @@ const createEsbuildPlugin =
 require("@badeball/cypress-cucumber-preprocessor/esbuild").createEsbuildPlugin;
 
 module.exports = defineConfig({
+  projectId: '4sv1nq',
   viewportHeight:1200,
   viewportWidth: 1200,
   e2e: {
