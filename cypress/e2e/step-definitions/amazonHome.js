@@ -1,10 +1,10 @@
-const {Given,When,Then} = require("@badeball/cypress-cucumber-preprocessor");
+import {Given,When,Then} from ("@badeball/cypress-cucumber-preprocessor");
 
 import AmazonPage from "../../pages/amazonPage";
 
 Given("the amazon homepage is operative", () => {
   cy.visit("/");
-  cy.clearAllCookies();
+  AmazonPage.validatePage();
 });
 
 When("the user searches for {string}", (products) => {

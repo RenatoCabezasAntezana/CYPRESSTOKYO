@@ -17,3 +17,8 @@ Then("The user clicks the second alert button",()=>{
 Then("The user clicks the third alert",()=>{
     DemoqaAlertPage.alertConfirm();
 })
+
+Then("The user write {string} the fourth alert",(name)=>{
+    DemoqaAlertPage.fourthAlert(name);
+})
+

@@ -16,7 +16,7 @@ Feature: Test Amazon search functionality
         And selects "<option>"
         And navigates to page number "<number>"
         And selects the third item
-        And confirm message "<status>"
+        Then confirm message "<status>"
         Examples:
             | product | option                        | number | status     |
             | gaming  | gaming keyboard               | 2      | Disponible |
