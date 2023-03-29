@@ -1,4 +1,4 @@
-@Demoqa
+
 Feature: Test Demoqa search functionality
 
     @HappyPath

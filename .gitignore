@@ -1,0 +1,4 @@
+.cypress/vide0s
+jsonlogs/
+node_modules/
+package-lock.json

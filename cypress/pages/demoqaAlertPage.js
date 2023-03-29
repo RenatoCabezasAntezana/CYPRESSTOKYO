@@ -16,7 +16,7 @@ class DemoqaAlertPage {
   }
 
   alertAfter() {
-    this.elements.buttonAlertAfterFive().click();
+    this.elements.buttonAlertAfterFive().click().wait(5000);
     cy.on("window:alert", (textFive) => {
       expect(textFive).to.contains("This alert appeared after 5 seconds");
     });

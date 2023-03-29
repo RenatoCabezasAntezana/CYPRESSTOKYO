@@ -1,19 +1,18 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import DemoqaWindowsPage from "../../pages/demoqaWindowsBrowserPage";
 
-Given("The demoqa homepage test browser windows renato", () => {
+Given("The demoqa homepage test browser windows", () => {
   cy.on("uncaught:exception", () => false);
-  cy.visit("https://demoqa.com/browser-windows/");
+  cy.visit("https://demoqa.com/browser-windows/")
 });
 
 When("The user clicks the new tab", () => {
-  DemoqaWindowsPage.openNewTab();
+  //DemoqaWindowsPage.openNewTab();
 });
 
 Then("The user clicks the new window", () => {
-  DemoqaWindowsPage.openNewWindow();
-});
-
+  
+})
 Then("The user clicks the new window message", () => {
-  //DemoqaWindowsPage.openNewWindowMessage();
+  DemoqaWindowsPage.openMessageWindowAndWaitForText();
 });

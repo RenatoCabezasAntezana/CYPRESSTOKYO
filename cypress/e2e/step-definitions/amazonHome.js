@@ -1,9 +1,10 @@
-import {Given,When,Then} from ("@badeball/cypress-cucumber-preprocessor");
+import {Given,When,Then} from "@badeball/cypress-cucumber-preprocessor";
 
 import AmazonPage from "../../pages/amazonPage";
 
 Given("the amazon homepage is operative", () => {
-  cy.visit("/");
+  cy.on('uncaught:exception', ()=> false)
+  cy.visit("https://www.amazon.com/-/es/");
   AmazonPage.validatePage();
 });
 
