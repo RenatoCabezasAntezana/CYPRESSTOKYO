@@ -1,4 +1,5 @@
-.cypress/vide0s
-jsonlogs/
+cucumber-html-report.js
+cucumber-json-formatter.exe
 node_modules/
-package-lock.json
+jsonlogs/
+cypress/videos/
