@@ -9,40 +9,49 @@ class DemoqaWindowsPage {
 
   openMessageWindowAndWaitForText(text) {
     cy.window().then((win) => {
-      cy.spy(win, 'open').as('open');
+      cy.spy(win, "open").as("open");
     });
 
-    this.elements.messageWindowButton().click()
-    cy.get('@open')
-      .should('have.been.calledOnceWith', '', 'MsgWindow')
-      .its('firstCall.returnValue')
+    this.elements.messageWindowButton().click();
+    cy.get("@open")
+      .should("have.been.calledOnceWith", "", "MsgWindow")
+      .its("firstCall.returnValue")
       .then((childWindow) => {
         expect(childWindow.document.body.innerText).to.include("Knowledge");
       })
       .wait(1000)
-      .invoke('close');
+      .invoke("close");
   }
 
   visitPage() {
     cy.visit(this.url);
   }
 
-
-  openNewTab() {
-    //this.elements.buttonNewTab().click();
-    // Esperar a que se abra la nueva pestaña
-    // cy.window().its("length").should("be.gt", 1);
-    // Cambiar a la nueva pestaña
-    // cy.window().then((win) => {
-    // Verificar que el contenido de la nueva pestaña contiene el texto "Hola mundo"
-    // cy.document().should("contain", "This is a sample page");
-    //});
-  }
+  openNewTab() {}
 
   openNewWindow() {
-    // Realizar acciones en la nueva ventana
-    //this.elements.buttonNewWindow().click();
-    // cy.get('@windowOpen').should('have.been.calledWith','','This is a sample page')
+    cy.window().then((win) => {
+      cy.spy(win, "open").as("open");
+    });
+
+    this.elements.buttonNewWindow().click();
+    cy.get("@open")
+      .should("have.been.calledOnceWith")
+      .its("firstCall.returnValue")
+      .wait(1000)
+      .then((body) => {
+        // const childWindow=win.open("https://demoqa.com/sample")
+        const url = body.location.href;
+        cy.log(url);
+        //const win = body.contents().find("body");
+        cy.wrap(body)
+          .wait(2000)
+          //.find("#sampleHeading")
+          .should("have.text", "")
+          .wait(2000)
+          .invoke("close");
+      })
+      .wait(1000);
   }
 
   /* openNewWindowMessage() {
@@ -53,5 +62,4 @@ class DemoqaWindowsPage {
     });
   }*/
 }
-
 export default new DemoqaWindowsPage();

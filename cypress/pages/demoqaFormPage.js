@@ -100,7 +100,7 @@ class DemoqaFormPage {
     cy.get(".css-11unzgr").contains(city).click()
   }
   clickSubmit(){
-    this.elements.buttonSubmit().click()
+    this.elements.buttonSubmit().click({force: true})
   }
 }
 

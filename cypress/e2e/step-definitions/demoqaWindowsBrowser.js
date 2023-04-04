@@ -11,7 +11,7 @@ When("The user clicks the new tab", () => {
 });
 
 Then("The user clicks the new window", () => {
-  
+  DemoqaWindowsPage.openNewWindow()
 })
 Then("The user clicks the new window message", () => {
   DemoqaWindowsPage.openMessageWindowAndWaitForText();
